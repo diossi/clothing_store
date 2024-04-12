@@ -1,2 +1,3 @@
 from . import users
-from . import jobs
+from . import history_buy
+from . import user_is_product_list

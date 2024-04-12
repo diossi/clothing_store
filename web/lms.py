@@ -45,7 +45,7 @@ def reqister():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form, current_user=current_user)
+    return render_template('register.html', title='Registration', form=form, current_user=current_user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -56,11 +56,18 @@ def login():
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/register")
+            return redirect("/")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Авторизация', form=form, current_user=current_user)
+    return render_template('login.html', title='Login', form=form, current_user=current_user)
+
+
+@app.route('/personal_account', methods=['GET', 'POST'])
+@login_required
+def personal_account():
+    db_sess = db_session.create_session()
+    return render_template("personal_account.html", title='Personal account', current_user=current_user)
 
 
 @app.route('/logout')

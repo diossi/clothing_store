@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <html>
+        <body>
+        
+        <h1>Личный кабинет</h1>
+        
+        <button onclick="settings()">Настройки аккаунта</button>
+        <button onclick="interests()">Интересы</button>
+        <button onclick="cart()">Корзина</button>
+        <button onclick="history()">История покупок</button>
+        <button onclick="friend()">Пригласи друга</button>
+        <button onclick="money()">Пополнение/вывод</button>
+        
+        <div id="settings"> 
+        Настройки
+        </div>
+        <div id="interests" interests.style.display="none"> 
+        Интересы
+        </div>
+        <div id="cart"> 
+        Корзина
+        </div>
+        <div id="history"> 
+        История
+        </div>
+        <div id="friend"> 
+        Пригласи друга
+        </div>
+        <div id="money"> 
+        Пополнение/вывод
+        </div>
+        <script>
+            window.onload = function() {
+              update();
+            };
+          </script>
+
+        
+        <script>
+        function update() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            {
+                settings.style.display = "none";
+                interests.style.display = "none";
+                cart.style.display = "none";
+                history.style.display = "none";
+                friend.style.display = "none";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function settings() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (settings.style.display === "none") {
+                settings.style.display = "block";
+                interests.style.display = "none";
+                cart.style.display = "none";
+                history.style.display = "none";
+                friend.style.display = "none";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function interests() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (interests.style.display === "none") {
+                settings.style.display = "none";
+                interests.style.display = "block";
+                cart.style.display = "none";
+                history.style.display = "none";
+                friend.style.display = "none";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function cart() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (cart.style.display === "none") {
+                settings.style.display = "none";
+                interests.style.display = "none";
+                cart.style.display = "block";
+                history.style.display = "none";
+                friend.style.display = "none";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function history() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (history.style.display === "none") {
+                settings.style.display = "none";
+                interests.style.display = "none";
+                cart.style.display = "none";
+                history.style.display = "block";
+                friend.style.display = "none";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function friend() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (friend.style.display === "none") {
+                settings.style.display = "none";
+                interests.style.display = "none";
+                cart.style.display = "none";
+                history.style.display = "none";
+                friend.style.display = "block";
+                money.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function money() {
+            var settings = document.getElementById("settings");
+            var interests = document.getElementById("interests");
+            var cart = document.getElementById("cart");
+            var history = document.getElementById("history");
+            var friend = document.getElementById("friend");
+            var money = document.getElementById("money");
+            if (money.style.display === "none") {
+                settings.style.display = "none";
+                interests.style.display = "none";
+                cart.style.display = "none";
+                history.style.display = "none";
+                friend.style.display = "none";
+                money.style.display = "block";
+            }
+            }
+        </script>
+        
+        </body>
+    </html>
+{% endblock %}
