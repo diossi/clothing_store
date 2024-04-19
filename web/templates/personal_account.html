@@ -5,32 +5,60 @@
         <body>
         
         <h1>Личный кабинет</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <button onclick="settings()">Настройки аккаунта</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="interests()">Интересы</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="cart()">Корзина</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="history()">История покупок</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="friend()">Пригласи друга</button>
+                </div>
+                <div class="col-2">
+                    <button onclick="money()">Пополнение/вывод</button>
+                </div>
+            </div>
+        </div>
         
-        <button onclick="settings()">Настройки аккаунта</button>
-        <button onclick="interests()">Интересы</button>
-        <button onclick="cart()">Корзина</button>
-        <button onclick="history()">История покупок</button>
-        <button onclick="friend()">Пригласи друга</button>
-        <button onclick="money()">Пополнение/вывод</button>
         
-        <div id="settings"> 
-        Настройки
+        
+        
+        
+        
+        
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div id="settings">Настройки</div>
+                </div>
+                <div class="col-2">
+                    <div id="interests">Интересы</div>
+                </div>
+                <div class="col-2">
+                    <div id="cart"> Корзина</div>
+                </div>
+                <div class="col-2">
+                    <div id="history">История</div>
+                </div>
+                <div class="col-2">
+                    <div id="friend">Пригласи друга</div>
+                </div>
+                <div class="col-2">
+                    <div id="money">Пополнение/вывод</div>
+                </div>
+            </div>
         </div>
-        <div id="interests" interests.style.display="none"> 
-        Интересы
-        </div>
-        <div id="cart"> 
-        Корзина
-        </div>
-        <div id="history"> 
-        История
-        </div>
-        <div id="friend"> 
-        Пригласи друга
-        </div>
-        <div id="money"> 
-        Пополнение/вывод
-        </div>
+        
         <script>
             window.onload = function() {
               update();

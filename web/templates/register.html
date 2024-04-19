@@ -31,7 +31,16 @@
             </p>
         {% endfor %}
     </p>
+    <label for="exampleDataList" class="form-label">Ваш пол</label>
+    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Введите...">
+    <datalist id="datalistOptions">
+        <option value="Мужской">
+        <option value="Женский">
+        <option value="Енотик педро">
+    </datalist>
+    <p></p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    
     {{message}}
 </form>
 {% endblock %}

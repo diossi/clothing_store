@@ -29,7 +29,7 @@ class User(SqlAlchemyBase, UserMixin):
     all_balance_out = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
 
     user_product_list = orm.relationship("UserProductList", back_populates='user')
-    user_history_buy = orm.relationship("UserHistoryBuy", back_populates='user')\
+    user_history_buy = orm.relationship("UserHistoryBuy", back_populates='user')
 
 
     def set_password(self, password):
