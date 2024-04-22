@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Registration</h1>
+<h1>Регистрация</h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <p>
@@ -31,13 +31,15 @@
             </p>
         {% endfor %}
     </p>
-    <label for="exampleDataList" class="form-label">Ваш пол</label>
-    <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Введите...">
-    <datalist id="datalistOptions">
-        <option value="Мужской">
-        <option value="Женский">
-        <option value="Енотик педро">
-    </datalist>
+    <p>
+        {{ form.gender.label }}<br>
+        {{ form.gender(class="form-control", type="text") }}<br>
+        {% for error in form.gender.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
     <p></p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     

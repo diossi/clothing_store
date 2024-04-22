@@ -39,13 +39,14 @@ def reqister():
                                    form=form,
                                    message="Такой пользователь уже есть", current_user=current_user)
         user = User(
-            email=form.email.data
+            email=form.email.data,
+            gender=form.gender.data
         )
         user.set_password(form.password.data)
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Registration', form=form, current_user=current_user)
+    return render_template('register.html', title='Регистрация', form=form, current_user=current_user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -60,7 +61,7 @@ def login():
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Login', form=form, current_user=current_user)
+    return render_template('login.html', title='Логин', form=form, current_user=current_user)
 
 
 @app.route('/personal_account', methods=['GET', 'POST'])
