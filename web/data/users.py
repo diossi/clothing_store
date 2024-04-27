@@ -4,9 +4,10 @@ from sqlalchemy import orm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
+from sqlalchemy_serializer import SerializerMixin
 
 
-class User(SqlAlchemyBase, UserMixin):
+class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
@@ -18,18 +19,20 @@ class User(SqlAlchemyBase, UserMixin):
     the_product_of_interest = sqlalchemy.Column(sqlalchemy.String, default='None', nullable=True)
     gender = sqlalchemy.Column(sqlalchemy.String, default='None', nullable=True)
     login = sqlalchemy.Column(sqlalchemy.String, default='None', nullable=True)
-    balance = sqlalchemy.Column(sqlalchemy.String, default='0', nullable=True)
+    balance = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
     date_reg = sqlalchemy.Column(sqlalchemy.DateTime,
                                       default=datetime.datetime.now)
-    user_invite = sqlalchemy.Column(sqlalchemy.Integer,
-                                sqlalchemy.ForeignKey("users.id"), default=0)
-    is_invite = sqlalchemy.Column(sqlalchemy.String, default='No', nullable=True)
+    user_invite = sqlalchemy.Column(sqlalchemy.Integer, nullable=0)
+    is_invite = sqlalchemy.Column(sqlalchemy.Boolean, default=False, nullable=True)
     balance_friend = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
     all_balance_in = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
     all_balance_out = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=True)
+    is_bonus = sqlalchemy.Column(sqlalchemy.Boolean, default=False, nullable=True)
 
-    user_product_list = orm.relationship("UserProductList", back_populates='user')
-    user_history_buy = orm.relationship("UserHistoryBuy", back_populates='user')
+    is_admin = sqlalchemy.Column(sqlalchemy.Boolean, default=False, nullable=True)
+
+    buy_list = orm.relationship("BuyItem", back_populates='user')
+    want_buy_list = orm.relationship("WantBuyItem", back_populates='user')
 
 
     def set_password(self, password):

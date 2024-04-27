@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Наши магазины</h1>
+    {% for store in stores %}
+        <h2>{{store.sity}}</h2>
+        <div> Адрес магазина: {{store.address}}</div>
+        <div> День завоза: {{store.update}}</div>
+        {% if current_user.is_admin %}
+            <a class="btn btn-outline-dark" href="/delete_store{{store.id}}" role="button">Удалить магазин</a>
+        {% endif %}
+    {% endfor %}
+    {% if current_user.is_admin %}
+        <a class="btn btn-outline-dark" href="/add_store" role="button">Добавить магазин</a>
+    {% endif %}
+{% endblock %}

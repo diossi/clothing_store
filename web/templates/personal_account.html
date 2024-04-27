@@ -30,34 +30,68 @@
         </div>
         
         
-        
-        
-        
-        
-        
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-2">
-                    <div id="settings">Настройки</div>
-                </div>
-                <div class="col-2">
-                    <div id="interests">Интересы</div>
-                </div>
-                <div class="col-2">
-                    <div id="cart"> Корзина</div>
-                </div>
-                <div class="col-2">
-                    <div id="history">История</div>
-                </div>
-                <div class="col-2">
-                    <div id="friend">Пригласи друга</div>
-                </div>
-                <div class="col-2">
-                    <div id="money">Пополнение/вывод</div>
-                </div>
+        <div id="settings">
+            <div>Ваша почта: {{current_user.email}} </div>
+            <div>Ваша дата регистрации: {{current_user.date_reg}} </div>
+            <div><a class="btn btn-outline-dark" href="/change_login" role="button">Сменить логин</a></div>
+            <div><a class="btn btn-outline-dark" href="/change_password" role="button">Сменить пароль</a></div>
+            <div><a class="btn btn-outline-danger" href="/logout" role="button">Выйти с аккаунта</a></div>
+        </div>
+
+        <div id="interests">
+            <div>Ваш город: {{current_user.sity}} <a class="btn btn-outline-dark" href="/change_sity" role="button">Сменить город</a></div>
+            <div>Ваш пол: {{current_user.gender}} <a class="btn btn-outline-dark" href="/change_gender" role="button">Сменить пол</a></div>
+            <div>Интересный вам товар(Укажите "None" если хотите убрать интерес и сортировать на сайте): {{current_user.the_product_of_interest}} <a class="btn btn-outline-dark" href="/change_product_interest" role="button">Сменить товар</a></div>
+        </div>    
+
+        <div id="cart"> 
+        {% for item in want_buy_list %}
+            <h2>{{item.name}} </h2>
+            <div>
+                Текущая цена: {{item.price}}
+            </div>
+            <div>
+                Ссылка на предмет: <a class="btn btn-outline-dark" href="/item{{item.id_original_item}}" role="button">Открыть</a>
+            </div>
+            <div>
+                <a class="btn btn-outline-dark" href="/buyitem{{item.id_original_item}}" role="button">Купить</a>
+            </div>
+            <div>
+                <a class="btn btn-outline-dark" href="/removewantitem{{item.id_original_item}}" role="button">Удалить с корзины</a>
+            </div>
+        {% endfor %}
+        </div>    
+        <div id="history">
+        {% for item in buy_list %}
+            <h2>{{item.name}} </h2>
+            <div>
+                За сколько купили: {{item.price}}
+            </div>
+            <div>
+                Когда купили: {{item.date_buy}}
+            </div>
+            <div>
+                Ссылка на предмет: <a class="btn btn-outline-dark" href="/item{{item.id_original_item}}" role="button">Открыть</a>
+            </div>
+        {% endfor %}
+        </div>
+        <div id="friend">
+            <div>
+            Пригласи друга и получи 10% со всех его депозитов
+            </div>
+            <div>
+            Ваш код приглашения: {{current_user.id}}
             </div>
         </div>
+        <div id="money">
+            <div>Всего пополнили: {{current_user.all_balance_in}}</div>
+            <div>Всего вывели: {{current_user.all_balance_out}}</div>
+            <div>Если вы пополнили баланс на 5 000 и более, то на следующее пополнение бонус +500 к балансу</div>
+            <div>При выводе вы теряете 20 % денег</div>
+            <div><a class="btn btn-outline-dark" href="/balance_in" role="button">Пополнить</a></div>
+            <div><a class="btn btn-outline-dark" href="/balance_out" role="button">Вывести</a></div>
+        </div>
+                
         
         <script>
             window.onload = function() {
@@ -189,7 +223,7 @@
                 history.style.display = "none";
                 friend.style.display = "none";
                 money.style.display = "block";
-            }
+            } 
             }
         </script>
         

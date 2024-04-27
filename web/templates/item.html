@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Предмет</h1>
+    {% if item != 'None' %}
+        <h2>{{item.name}}</h2>
+        <div>
+            <img src="../static/img/{{item.img}}"
+            alt="здесь должна была быть картинка, но не нашлась">
+        </div>
+        <div>
+            Текущая цена: {{item.price - item.price_down}}
+        </div>
+        <div>
+            Цена без скидки: {{item.price}}
+        </div>
+        <div>
+            Размер товара: {{item.size}}
+        </div>
+        <div>
+            Количество товара: {{item.count}}
+        </div>
+        {% if current_user.is_authenticated %}
+            <div>
+                Добавить в корзину: <a class="btn btn-outline-dark" href="/wantbuyitem{{item.id}}" role="button">добавить</a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div> Товар не найден </div>
+    {% endif %}
+{% endblock %}

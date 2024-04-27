@@ -40,6 +40,16 @@
             </p>
         {% endfor %}
     </p>
+    <p>{{ form.is_invite() }} {{ form.is_invite.label }}</p>
+    <p>
+        {{ form.user_invite.label }}<br>
+        {{ form.user_invite(class="form-control", type="text") }}<br>
+        {% for error in form.user_invite.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
     <p></p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     

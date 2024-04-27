@@ -13,9 +13,14 @@
                 <a class="btn btn-outline-dark" href="/" role="button">Товары</a>
               </div>
               <div class="col-2">
-                <a class="btn btn-outline-dark" href="/shops" role="button">Магазины в городе</a>
+                <a class="btn btn-outline-dark" href="/store_in_sity" role="button">Магазины в городе</a>
               </div>
                 {% if current_user.is_authenticated %}
+                    {% if current_user.is_admin %}
+                        <div class="col-2">
+                            <a class="btn btn-outline-dark" href="/storage" role="button">Склад</a>
+                        </div>
+                    {% endif %}
                     <div class="col-2">
                         <a>Баланс: {{ current_user.balance}} руб <a><a class="btn btn-light" href="/personal_account" role="button">{{ current_user.email }}</a>
                     </div>

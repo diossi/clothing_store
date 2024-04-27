@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Склад</h1>
+    {% for item in items %}
+        <h2>{{item.name}}</h2>
+        <div>
+            <a class="btn btn-outline-dark" href="/item{{item.id}}" role="button">Открыть товар</a> - Количество: {{item.count}} 
+            <a class="btn btn-outline-dark" href="/additem{{item.id}}" role="button">+</a> 
+            <a class="btn btn-outline-dark" href="/removeitem{{item.id}}" role="button">-</a>
+            <a class="btn btn-outline-danger" href="/deleteitem{{item.id}}" role="button">Удалить</a>
+            Сейчас {% if item.is_see == True %} видно {% else %} не видно {% endif %}
+            <a class="btn btn-outline-dark" href="/changeitemsee{{item.id}}" role="button">{% if item.is_see == True %} Скрыть {% else %} Показать {% endif %}</a>
+            <a class="btn btn-outline-dark" href="/edit_item{{item.id}}" role="button">Изменить</a>
+            Купили: {{item.count_buy}}
+        </div>
+    {% endfor %}
+    <h2>Добавление</h2>
+    <div>
+        <a class="btn btn-outline-dark" href="/add_item" role="button">Добавить</a>
+    </div>
+{% endblock %}

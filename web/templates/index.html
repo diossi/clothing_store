@@ -1,6 +1,210 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Наши товары</h1>
-    !b5
+    <html>
+        <body>
+        
+        <h1>Личный кабинет</h1>
+        
+        <center>
+            <h1>Наши товары</h1>
+        </center>
+        {% if current_user.is_authenticated and current_user.the_product_of_interest != 'None' %}
+            {% for item in items %}
+                {% if item.type_wear == current_user.the_product_of_interest and item.is_see%}
+                    <center>
+                        <h2>{{item.name}}</h2>
+                        <a class="btn btn-outline-dark" href="/item{{item.id}}" role="button">Открыть товар</a>
+                        <div>
+                            <img src="../static/img/{{item.img}}"
+                            alt="здесь должна была быть картинка, но не нашлась">
+                        </div>
+                        <div>
+                            Текущая цена: {{item.price - item.price_down}}
+                        </div>
+                        <div>
+                            Цена без скидки: {{item.price}}
+                        </div>
+                        <div>
+                            Размер товара: {{item.size}}
+                        </div>
+                        <div>
+                            Количество товара: {{item.count}}
+                        </div>
+                        {% if current_user.is_authenticated %}
+                        <div>
+                            Добавить в корзину: <a class="btn btn-outline-dark" href="/wantbuyitem{{item.id}}" role="button">добавить</a>
+                        </div>
+                        {% endif %}
+                    </center>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <button onclick="tshirt()">Футболки</button>
+                    </div>
+                    <div class="col-4">
+                        <button onclick="pants()">Штаны</button>
+                    </div>
+                    <div class="col-4">
+                        <button onclick="boots()">Обувь</button>
+                    </div>
+                </div>
+            </div>
+            <div id="boots">
+            {% for item in items %} 
+                    {% if item.type_wear == 'Обувь' and item.is_see %}
+                    <center>
+                        <h2>{{item.name}}</h2>
+                        <a class="btn btn-outline-dark" href="/item{{item.id}}" role="button">Открыть товар</a>
+                        <div>
+                            <img src="../static/img/{{item.img}}"
+                            alt="здесь должна была быть картинка, но не нашлась">
+                        </div>
+                        <div>
+                            Текущая цена: {{item.price - item.price_down}}
+                        </div>
+                        <div>
+                            Цена без скидки: {{item.price}}
+                        </div>
+                        <div>
+                            Размер товара: {{item.size}}
+                        </div>
+                        <div>
+                            Количество товара: {{item.count}}
+                        </div>
+                        {% if current_user.is_authenticated %}
+                        <div>
+                            Добавить в корзину: <a class="btn btn-outline-dark" href="/wantbuyitem{{item.id}}" role="button">добавить</a>
+                        </div>
+                        {% endif %}
+                    </center>
+                    {% endif %}
+            {% endfor %}
+            </div>
+            <div id="pants">
+                {% for item in items %} 
+                        {% if item.type_wear == 'Штаны' and item.is_see %}
+                        <center>
+                            <h2>{{item.name}}</h2>
+                            <a class="btn btn-outline-dark" href="/item{{item.id}}" role="button">Открыть товар</a>
+                            <div>
+                                <img src="../static/img/{{item.img}}"
+                                alt="здесь должна была быть картинка, но не нашлась">
+                            </div>
+                            <div>
+                                Текущая цена: {{item.price - item.price_down}}
+                            </div>
+                            <div>
+                                Цена без скидки: {{item.price}}
+                            </div>
+                            <div>
+                                Размер товара: {{item.size}}
+                            </div>
+                            <div>
+                                Количество товара: {{item.count}}
+                            </div>
+                            {% if current_user.is_authenticated %}
+                            <div>
+                                Добавить в корзину: <a class="btn btn-outline-dark" href="/wantbuyitem{{item.id}}" role="button">добавить</a>
+                            </div>
+                            {% endif %}
+                        </center>
+                        {% endif %}
+                {% endfor %}
+                </div>
+            <div id='tshirt'>
+            {% for item in items %}  
+                    {% if item.type_wear == 'Футболки' and item.is_see %}
+                    <center>
+                        <h2>{{item.name}}</h2>
+                        <a class="btn btn-outline-dark" href="/item{{item.id}}" role="button">Открыть товар</a>
+                        <div>
+                            <img src="../static/img/{{item.img}}"
+                            alt="здесь должна была быть картинка, но не нашлась">
+                        </div>
+                        <div>
+                            Текущая цена: {{item.price - item.price_down}}
+                        </div>
+                        <div>
+                            Цена без скидки: {{item.price}}
+                        </div>
+                        <div>
+                            Размер товара: {{item.size}}
+                        </div>
+                        <div>
+                            Количество товара: {{item.count}}
+                        </div>
+                        {% if current_user.is_authenticated %}
+                        <div>
+                            Добавить в корзину: <a class="btn btn-outline-dark" href="/wantbuyitem{{item.id}}" role="button">добавить</a>
+                        </div>
+                        {% endif %}
+                    </center>
+                    {% endif %}
+            </div>
+            {% endfor %}
+        {% endif %}
+                
+        
+        <script>
+            window.onload = function() {
+              update();
+            };
+          </script>
+
+        
+        <script>
+        function update() {
+            var tshirt = document.getElementById("tshirt");
+            var boots = document.getElementById("boots");
+            var pants = document.getElementById("pants");
+            {
+                tshirt.style.display = "none";
+                boots.style.display = "none";
+                pants.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function tshirt() {
+            var tshirt = document.getElementById("tshirt");
+            var boots = document.getElementById("boots");
+            var pants = document.getElementById("pants");
+            if (tshirt.style.display === "none") {
+                tshirt.style.display = "block";
+                boots.style.display = "none";
+                pants.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function boots() {
+            var tshirt = document.getElementById("tshirt");
+            var boots = document.getElementById("boots");
+            var pants = document.getElementById("pants");
+            if (boots.style.display === "none") {
+                tshirt.style.display = "none";
+                boots.style.display = "block";
+                pants.style.display = "none";
+            }
+            }
+        </script>
+        <script>
+        function pants() {
+            var tshirt = document.getElementById("tshirt");
+            var boots = document.getElementById("boots");
+            var pants = document.getElementById("pants");
+            if (pants.style.display === "none") {
+                tshirt.style.display = "none";
+                boots.style.display = "none";
+                pants.style.display = "block";
+            }
+            }
+        </script>
+        
+        </body>
+    </html>
 {% endblock %}
